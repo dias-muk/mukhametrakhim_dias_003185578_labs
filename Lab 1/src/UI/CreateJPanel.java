@@ -307,6 +307,21 @@ public class CreateJPanel extends javax.swing.JPanel {
         String shipCity = fieldShipAddrCity.getText();
         String shipZip = fieldShipAddrZipCode.getText();
         
+        if(!require(name, "Name")) return;
+        if(!require(description, "Description")) return;
+        if(!require(avail, "Availability")) return;
+        if(!require(price, "Price")) return;
+        if(!require(manStreet, "Manufacture Address Street Name")) return;
+        if(!require(manUnit, "Manufacture Address Unit ")) return;
+        if(!require(manCity, "Manufacture Address City")) return;
+        if(!require(manZip, "Manufacture Address Zip Code")) return;
+        if(!require(shipStreet, "Shipping Address Street Name")) return;
+        if(!require(shipUnit, "Shipping Address Unit")) return;
+        if(!require(shipCity, "Shipping Address City")) return;
+        if(!require(shipZip, "Shipping Address Zip Code")) return;
+
+        
+        
         product.setName(name);
         product.setDescription(description);
         product.setAvailNum(avail);
@@ -343,7 +358,17 @@ public class CreateJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnSaveActionPerformed
 
-
+    private boolean isBlank(String text){
+        return text == null || text.trim().isEmpty();
+    }
+    
+    private boolean require(String value, String label){
+        if(isBlank(value)){
+            JOptionPane.showMessageDialog(this,label + " is required");
+            return false;
+        }
+        return true;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JTextField fieldAvailability;

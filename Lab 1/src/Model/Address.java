@@ -9,10 +9,10 @@ package Model;
  * @author dias
  */
 public class Address {
-    String streetName;
-    String unitNum;
-    String city;
-    String zipCode;
+    private String streetName;
+    private String unitNum;
+    private String city;
+    private String zipCode;
 
     public String getStreetName() {
         return streetName;

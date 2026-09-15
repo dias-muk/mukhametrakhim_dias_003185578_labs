@@ -9,12 +9,12 @@ package Model;
  * @author dias
  */
 public class Product {
-    String name;
-    String description;
-    String availNum;
-    String price;
-    Address manufactureAddress;
-    Address shippingAddress;
+    private String name;
+    private String description;
+    private String availNum;
+    private String price;
+    private Address manufactureAddress;
+    private Address shippingAddress;
     
     public Product(){
         manufactureAddress = new Address();
