@@ -9,5 +9,55 @@ package Model;
  * @author dias
  */
 public class VitalSign {
+    private String date;
+    private float temperature;
+    private double bloodPressure;
+    private int pulse;
+    private boolean isConcious;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public float getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(float temperature) {
+        this.temperature = temperature;
+    }
+
+    public double getBloodPressure() {
+        return bloodPressure;
+    }
+
+    public void setBloodPressure(double bloodPressure) {
+        this.bloodPressure = bloodPressure;
+    }
+
+    public int getPulse() {
+        return pulse;
+    }
+
+    public void setPulse(int pulse) {
+        this.pulse = pulse;
+    }
+
+    public boolean isIsConcious() {
+        return isConcious;
+    }
+
+    public void setIsConcious(boolean isConcious) {
+        this.isConcious = isConcious;
+    }
+    
+    @Override
+    public String toString(){
+        return getDate();
+    }
     
 }
