@@ -36,7 +36,7 @@ public class SupplierDirectory {
 
     public Supplier searchSupplier(String supplierName) {
         for (Supplier supplier : supplierList) {
-            if (supplier.getSupplyName().equals(supplierName)) {
+            if (supplier.getSupplyName() != null && supplier.getSupplyName().equals(supplierName)) {
                 return supplier;
             }
         }

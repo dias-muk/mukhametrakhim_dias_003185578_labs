@@ -123,10 +123,21 @@ public class AddSupplierJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-
+        String name = txtName.getText().trim();
+        
+        if(name.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter a supplier name.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (supplierDirectory.searchSupplier(name) != null){
+            JOptionPane.showMessageDialog(this, "A supplier with that name already exists.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;   
+        }
         Supplier supplier = supplierDirectory.addSupplier();
-        supplier.setSupplyName(txtName.getText());
+        supplier.setSupplyName(name);
+        
         JOptionPane.showMessageDialog(null, "Supplier added successfully!!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        txtName.setText("");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
