@@ -5,15 +5,14 @@
  */
 package ui.CustomerRole;
 
-import model.Product;
-import model.Supplier;
 import model.SupplierDirectory;
-import ui.SupplierRole.ViewProductDetailJPanel;
-import java.awt.CardLayout;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.MasterOrderList;
+import model.Order;
+import model.OrderItem;
+import model.Product;
+import model.Supplier;
 
 
 /**
@@ -21,11 +20,87 @@ import javax.swing.table.DefaultTableModel;
  * @author Rushabh
  */
 public class BrowseProductsJPanel extends javax.swing.JPanel {
-
+    
+    JPanel userProcessContianer;
+    SupplierDirectory supplierDirectory;
+    MasterOrderList masterOrderList;
+    Order currentOrder;
     /** Creates new form BrowseProducts */
-    public BrowseProductsJPanel() {
+    public BrowseProductsJPanel(JPanel userProcessContianer, SupplierDirectory supplierDirectory, MasterOrderList masterOrderList) {
         initComponents();
+        
+        this.userProcessContianer = userProcessContianer;
+        this.supplierDirectory = supplierDirectory;
+        this.masterOrderList = masterOrderList;
+        
+        this.currentOrder = new Order();
+        
+        populateCombo();
+        populateProductTable();
+        populateCartTable();
       
+    }
+    
+    private void populateCombo(){
+        cmbSupplier.removeAllItems();
+        
+        for(Supplier s: supplierDirectory.getSupplierlist()){
+            cmbSupplier.addItem(s);
+        }
+    }
+    
+    private void populateProductTable(){
+        Supplier selectedSupplier = (Supplier) cmbSupplier.getSelectedItem();
+        
+        if (selectedSupplier == null){
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+        model.setRowCount(0);
+        
+        for (Product p: selectedSupplier.getProductCatalog().getProductcatalog()) {
+            Object row[] = new Object[4];
+            row[0] = p;
+            row[1] = p.getModelNumber();
+            row[2] = p.getPrice();
+            row[3] = p.getAvail();
+            model.addRow(row);
+        }
+    }
+    
+    private void populateProductTable(String keyword){
+        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+        model.setRowCount(0);
+        
+        for (Supplier s: supplierDirectory.getSupplierlist()){
+            for (Product p: s.getProductCatalog().getProductcatalog()) {
+                if(p.getProdName().equalsIgnoreCase(keyword)){
+                    Object row[] = new Object[4];
+                    row[0] = p;
+                    row[1] = p.getModelNumber();
+                    row[2] = p.getPrice();
+                    row[3] = p.getAvail();
+                    model.addRow(row);
+                }
+        }
+        
+        
+        }
+    }
+    
+    private void populateCartTable(){
+        DefaultTableModel model = (DefaultTableModel) tblCart.getModel();
+        model.setRowCount(0);
+        
+        for (OrderItem oi: currentOrder.getOrderItemList()) {
+            Object row[] = new Object[4];
+            row[0] = oi;
+            row[1] = oi.getSalesPrice();
+            row[2] = oi.getQuantity();
+            row[3] = oi.getQuantity() * oi.getSalesPrice();
+            model.addRow(row);
+        }
     }
 
     
@@ -128,6 +203,11 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         spnQuantity.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         btnAddToCart.setText("Add to Cart");
+        btnAddToCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddToCartActionPerformed(evt);
+            }
+        });
 
         btnProductDetails.setText("View Product Details");
         btnProductDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -319,6 +399,10 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnViewOrderItemActionPerformed
 
+    private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddToCartActionPerformed
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddToCart;
