@@ -412,7 +412,49 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnViewOrderItemActionPerformed
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
-        // TODO add your handling code here:
+        int selectedRowIndex = tblProductCatalog.getSelectedRow();
+        if(selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select the product first.");
+            return;
+        }
+        
+        Product product = (Product) tblProductCatalog.getValueAt(selectedRowIndex, 0);
+        double salesPrice = 0;
+        int quant = 0;
+        
+        try {
+            salesPrice = Double.parseDouble(txtSalesPrice.getText());
+            quant = (Integer) spnQuantity.getValue();
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Please check the price and quantity formats.");
+        }
+        
+        if (salesPrice < product.getPrice()){
+            JOptionPane.showMessageDialog(this, "Price should be more than it is set by the supplier.");            
+        }
+        
+        OrderItem item = currentOrder.findProduct(product);
+        
+        if(item == null){
+            if(product.getAvail() >= quant){
+                currentOrder.addNewOrderItem(product, salesPrice, quant);
+                product.setAvail(product.getAvail() - quant);
+            } else {
+                JOptionPane.showMessageDialog(this, "Please check product availability.");
+                return;
+            }
+        } else {
+            int oldQuant = item.getQuantity();
+            if (item.getProduct().getAvail() + oldQuant < quant){
+                JOptionPane.showMessageDialog(this, "Please check product availability.");
+                return;
+            }
+            item.getProduct().setAvail(item.getProduct().getAvail() + oldQuant - quant);
+            item.setQuantity(quant);
+        }
+        
+        populateProductTable();
+        populateCartTable();
     }//GEN-LAST:event_btnAddToCartActionPerformed
     
     
