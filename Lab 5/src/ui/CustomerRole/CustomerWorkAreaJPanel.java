@@ -85,7 +85,7 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     private void btnBrowseCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseCatalogActionPerformed
-        BrowseProductJPanel bpjp = new BrowseProductsJPanel(userProcessContainer, supplierDirectory, masterOrderList);
+        BrowseProductsJPanel bpjp = new BrowseProductsJPanel(userProcessContainer, supplierDirectory, masterOrderList);
         userProcessContainer.add("BrowseProductsJPanel", bpjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
