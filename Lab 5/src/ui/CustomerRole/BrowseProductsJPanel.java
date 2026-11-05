@@ -435,7 +435,7 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         }
         
         if (quant <= 0){
-            JOptionPane.showMessageDialog(this, "Quantity must be greateer than zero.");
+            JOptionPane.showMessageDialog(this, "Quantity must be greater than zero.");
             return;
         }
         
