@@ -390,6 +390,10 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnProductDetailsActionPerformed
 
     private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOutActionPerformed
+        if(currentOrder.getOrderItemList().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Your cart is empty.");
+            return;
+        }
         masterOrderList.addNewOrder(currentOrder);
         currentOrder = new Order();
         
@@ -427,6 +431,11 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         int oldQuant = item.getQuantity();
         if (item.getProduct().getAvail() + oldQuant < quant){
             JOptionPane.showMessageDialog(this, "Please check product availability.");
+            return;
+        }
+        
+        if (quant <= 0){
+            JOptionPane.showMessageDialog(this, "Quantity must be greateer than zero.");
             return;
         }
         
@@ -490,10 +499,12 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
             quant = (Integer) spnQuantity.getValue();
         } catch (Exception e){
             JOptionPane.showMessageDialog(this, "Please check the price and quantity formats.");
+            return;
         }
         
         if (salesPrice < product.getPrice()){
-            JOptionPane.showMessageDialog(this, "Price should be more than it is set by the supplier.");            
+            JOptionPane.showMessageDialog(this, "Price should be more than it is set by the supplier.");
+            return;
         }
         
         OrderItem item = currentOrder.findProduct(product);
@@ -514,6 +525,7 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
             }
             item.getProduct().setAvail(item.getProduct().getAvail() + oldQuant - quant);
             item.setQuantity(quant);
+            item.setSalesPrice(salesPrice);
         }
         
         populateProductTable();

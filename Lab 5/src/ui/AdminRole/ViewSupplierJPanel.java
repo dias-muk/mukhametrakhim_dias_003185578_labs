@@ -2,7 +2,6 @@ package ui.AdminRole;
 
 import model.Product;
 import model.Supplier;
-import model.SupplierDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;

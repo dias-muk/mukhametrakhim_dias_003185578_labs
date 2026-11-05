@@ -1,7 +1,6 @@
 package ui.SupplierRole;
 
 import java.awt.CardLayout;
-import ui.AdminRole.ManageSuppliersJPanel;
 import java.awt.Component;
 import javax.swing.JPanel;
 import model.Product;
@@ -129,8 +128,6 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-
-        //txtId.setEditable(true);
         txtName.setEditable(true);
         txtPrice.setEditable(true);
         btnSave.setEnabled(true);

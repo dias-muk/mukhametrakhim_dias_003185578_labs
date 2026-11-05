@@ -34,7 +34,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        fieldAvailability = new javax.swing.JLabel();
+        lblAvailability = new javax.swing.JLabel();
         txtAvailability = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(650, 600));
@@ -67,14 +67,8 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel5.setText("Product Name:");
 
-        fieldAvailability.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        fieldAvailability.setText("Availability:");
-
-        txtAvailability.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAvailabilityActionPerformed(evt);
-            }
-        });
+        lblAvailability.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblAvailability.setText("Availability:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,7 +89,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
                 .addContainerGap(103, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(fieldAvailability)
+                        .addComponent(lblAvailability)
                         .addGap(31, 31, 31)
                         .addComponent(txtAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -137,7 +131,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addComponent(btnAdd)
                 .addContainerGap())
@@ -174,19 +168,15 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
-
-    private void txtAvailabilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAvailabilityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAvailabilityActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
-    private javax.swing.JLabel fieldAvailability;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblAvailability;
     private javax.swing.JTextField txtAvailability;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
