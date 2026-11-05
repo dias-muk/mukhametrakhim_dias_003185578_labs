@@ -369,8 +369,9 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbSupplierActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnProductDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductDetailsActionPerformed
@@ -389,8 +390,20 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnProductDetailsActionPerformed
 
     private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOutActionPerformed
-        // TODO add your handling code here:
-       
+        masterOrderList.addNewOrder(currentOrder);
+        currentOrder = new Order();
+        
+        populateCombo();
+        populateProductTable();
+        populateCartTable();
+        
+        txtNewQuantity.setText("");
+        txtSalesPrice.setText("");
+        txtSearch.setText("");
+        
+        spnQuantity.setValue(0);
+        
+        JOptionPane.showMessageDialog(this, "Thank you for your purchase. Looking forward to seeing you again!");
     }//GEN-LAST:event_btnCheckOutActionPerformed
 
     private void btnModifyQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyQuantityActionPerformed
